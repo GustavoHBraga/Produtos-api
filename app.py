@@ -38,4 +38,9 @@ def atualizarProduto(id: int, produto: Produto ):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("app:app", host="0.0.0.0", port=8085, reload=True, workers=4)
+    import asyncio
+    loop = asyncio.get_event_loop()
+    config = uvicorn.Config("app:app", host="0.0.0.0", port=8085, reload=True, workers=4)
+    server = uvicorn.Server(config)
+    loop.create_task(server.serve())
+    loop.run_forever()
