@@ -35,3 +35,7 @@ def atualizarProduto(id: int, produto: Produto ):
     prod = buscarProdutos(id)
     prod = produto
     return prod
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("app:app", host="0.0.0.0", port=8085, reload=True, workers=4)
